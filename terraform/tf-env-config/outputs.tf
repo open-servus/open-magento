@@ -3,7 +3,7 @@ output "defaults" {
     namespace              = local.environment
     environment            = local.environment
     region                 = local.region
-    project_name           = "openservice"
+    project_name           = "streams"
     project_domain         = "openservice.cloud"
     project_domain_pma     = "pma.openservice.cloud"
     user_project_firstname = "Open"
