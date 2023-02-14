@@ -1,0 +1,6 @@
+---
+ansible_user: admin
+ansible_become: yes 
+
+#Some extra var
+#mag_admin_password: "{{ lookup('password', '/dev/null length=22 chars=ascii_letters,digits') }}"

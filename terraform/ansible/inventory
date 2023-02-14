@@ -1,0 +1,11 @@
+[admin]
+admin ansible_host='{{ admin_public_ip }}' #ansible_user=admin
+
+[es]
+elasticsearch ansible_host='{{ elasticsearch_public_ip }}' #ansible_user=admin
+
+[dbserver]
+dbserver ansible_host='{{ admin_public_ip }}' #ansible_user=admin
+
+[nfs]
+nfs ansible_host='{{ nfs_public_ip }}' #ansible_user=admin

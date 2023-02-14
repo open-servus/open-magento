@@ -1,0 +1,20 @@
+---
+# Server configuration
+timezone: Europe/Berlin
+
+# Package version
+php_version: 7.4
+mariadb_version: 10.1
+
+# Nginx configuration
+magento_dir: /home/mon/htdocs/prod
+nginx_log_dir: /home/mon/logs/prod/nginx
+php_log_dir: /home/mon/logs/prod/php
+magento_user: prod
+
+# Magento config
+
+use_rewrites: 1
+language: en_US
+currency: EUR
+backend_frontname: backend

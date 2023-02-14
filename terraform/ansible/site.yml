@@ -1,0 +1,60 @@
+- hosts: dbserver
+  roles:
+    - role: os
+      tags: os
+      when: project_plan == "small"
+    - role: dbserver
+      tags: dbserver
+      when: project_plan == "small"
+  
+- hosts: es
+  roles:
+    - role: os
+      tags: os
+    - role: elasticsearch
+      tags: elasticsearch
+
+- hosts: nfs
+  roles:
+    - role: os
+      tags: os
+    - role: nfs
+      tags: nfs
+
+- hosts: admin
+  roles:
+    - role: os
+      tags: os
+    - role: common
+      tags: common
+    - role: php
+      tags: php
+    - role: composer
+      tags: composer
+    - role: webserver
+      tags: webserver
+    - role: db
+      tags: db
+    - role: magento
+      tags: magento
+    # - role: letsencrypt
+    #   tags: letsencrypt
+  # post_tasks:
+  #   - name: Copy kube config to local host
+  #     fetch:
+  #       src: /etc/rancher/k3s/k3s.yaml
+  #       dest: ~/.kube/{{ inventory_hostname_short }}.yaml
+  #       flat: yes
+  #       mode: 0640
+  #     #no_log: true
+
+  #   - name: Replace localhost with server name
+  #     replace:
+  #       path: ~/.kube/{{ inventory_hostname_short }}.yaml
+  #       regexp: '127\.0\.0\.1'
+  #       replace: "{{ inventory_hostname }}"
+  #     delegate_to: localhost
+  #     vars:
+  #       ansible_become: false
+  #     #no_log: true
+  
