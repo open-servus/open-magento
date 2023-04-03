@@ -96,7 +96,7 @@ module "acm" {
   source           = "../../terraform-modules/tf-acm-module"
   environment      = module.data.defaults.environment
   project_name     = module.data.defaults.project_name
-  project_dns_name = "4-streams.com"
+  project_dns_name = module.data.defaults.project_domain
 
   count = module.data.install_plan == "small" ? 0 : 1
 }
