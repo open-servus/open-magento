@@ -30,7 +30,7 @@ module "sg" {
 }
 
 module "admin" {
-  source                = "git::https://github.com/open-servus/tf-ec2-module.git?ref=main"
+  source                = "../../terraform-modules/tf-ec2-module"
   project_name          = module.data.defaults.project_name
   environment           = module.data.defaults.environment
   aws_key_pair          = module.bootstrap.aws_key_pair
@@ -56,7 +56,7 @@ module "rds" {
 }
 
 module "elasticsearch" {
-  source                = "git::https://github.com/open-servus/tf-ec2-module.git?ref=main"
+  source                = "../../terraform-modules/tf-ec2-module"
   project_name          = "${module.data.defaults.project_name}-es"
   environment           = module.data.defaults.environment
   aws_key_pair          = module.bootstrap.aws_key_pair
@@ -69,7 +69,7 @@ module "elasticsearch" {
 }
 
 module "nfs" {
-  source                = "git::https://github.com/open-servus/tf-ec2-module.git?ref=main"
+  source                = "../../terraform-modules/tf-ec2-module"
   project_name          = "${module.data.defaults.project_name}-nfs"
   environment           = module.data.defaults.environment
   aws_key_pair          = module.bootstrap.aws_key_pair
@@ -82,7 +82,7 @@ module "nfs" {
 }
 
 module "elasticache" {
-  source              = "git::https://github.com/open-servus/tf-elasticache-module.git?ref=main"
+  source              = "../../terraform-modules/elasticache"
   environment         = module.data.defaults.environment
   project_name        = module.data.defaults.project_name
   project_redis_specs = module.data.project_redis_specs
@@ -102,7 +102,7 @@ module "elasticache" {
 # }
 
 module "alb" {
-  source       = "git::https://github.com/open-servus/tf-alb-module.git?ref=main"
+  source       = "../../terraform-modules/tf-alb-module"
   environment  = module.data.defaults.environment
   project_name = module.data.defaults.project_name
   alb_sg       = [module.sg.sg_alb]
@@ -116,7 +116,7 @@ module "alb" {
 }
 
 module "waf" {
-  source            = "git::https://github.com/open-servus/tf-waf-module.git?ref=main"
+  source            = "../../terraform-modules/waf"
   environment       = module.data.defaults.environment
   project_name      = module.data.defaults.project_name
   whitelist_ipv4    = ["1.2.3.4/32", "5.6.7.8/32"]
@@ -130,7 +130,7 @@ module "waf" {
 }
 
 module "asg" {
-  source                   = "git::https://github.com/open-servus/tf-asg-module.git?ref=main"
+  source                   = "../../terraform-modules/asg"
   environment              = module.data.defaults.environment
   project_name             = module.data.defaults.project_name
   availability_zones       = [module.data.aws_availability_zone]
