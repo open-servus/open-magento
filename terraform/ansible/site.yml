@@ -7,19 +7,19 @@
       tags: dbserver
       when: project_plan == "small"
   
-# - hosts: es
-#   roles:
-#     - role: os
-#       tags: os
-#     - role: elasticsearch
-#       tags: elasticsearch
+- hosts: es
+  roles:
+    - role: os
+      tags: os
+    - role: elasticsearch
+      tags: elasticsearch
 
-# - hosts: nfs
-#   roles:
-#     - role: os
-#       tags: os
-#     - role: nfs
-#       tags: nfs
+- hosts: nfs
+  roles:
+    - role: os
+      tags: os
+    - role: nfs
+      tags: nfs
 
 - hosts: admin
   roles:
@@ -39,14 +39,6 @@
       tags: magento
     # - role: letsencrypt
     #   tags: letsencrypt
-  # post_tasks:
-  #   - name: Copy kube config to local host
-  #     fetch:
-  #       src: /etc/rancher/k3s/k3s.yaml
-  #       dest: ~/.kube/{{ inventory_hostname_short }}.yaml
-  #       flat: yes
-  #       mode: 0640
-  #     #no_log: true
 
   #   - name: Replace localhost with server name
   #     replace:
