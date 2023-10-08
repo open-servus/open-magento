@@ -92,14 +92,14 @@ module "elasticache" {
   count = module.data.install_plan == "small" ? 0 : 1
 }
 
-module "acm" {
-  source           = "../../terraform-modules/tf-acm-module"
-  environment      = module.data.defaults.environment
-  project_name     = module.data.defaults.project_name
-  project_dns_name = module.data.defaults.project_domain
+# module "acm" {
+#   source           = "../../terraform-modules/tf-acm-module"
+#   environment      = module.data.defaults.environment
+#   project_name     = module.data.defaults.project_name
+#   project_dns_name = module.data.defaults.project_domain
 
-  count = module.data.install_plan == "small" ? 0 : 1
-}
+#   count = module.data.install_plan == "small" ? 0 : 1
+# }
 
 module "alb" {
   source       = "git::https://github.com/open-servus/tf-alb-module.git?ref=main"
@@ -110,7 +110,7 @@ module "alb" {
   vpc_id          = data.aws_vpc.default.id
   subnets         = toset(data.aws_subnet_ids.subnets_ids.ids)
   web_instance_id = module.admin.instance_id
-  acm_arn         = module.acm[0].acm_arn
+  acm_arn         = "test" #module.acm[0].acm_arn
 
   count = module.data.install_plan == "small" ? 0 : 1
 }

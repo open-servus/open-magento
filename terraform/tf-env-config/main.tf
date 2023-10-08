@@ -5,7 +5,7 @@ provider "ansiblevault" {
 locals {
   environment     = "prod"
   region          = "us-east-1"
-  tf_state_bucket = "open-services-project-cloud-tf-state"
+  tf_state_bucket = "umtao-project-cloud-tf-state"
 }
 
 resource "random_integer" "priority" {

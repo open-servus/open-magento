@@ -3,12 +3,12 @@ output "defaults" {
     namespace              = local.environment
     environment            = local.environment
     region                 = local.region
-    project_name           = "openservice"
-    project_domain         = "openservice.cloud"
-    project_domain_pma     = "pma.openservice.cloud"
-    user_project_firstname = "Open"
+    project_name           = "orangemag"
+    project_domain         = "orangemag.cloud"
+    project_domain_pma     = "pma.orangemag.cloud"
+    user_project_firstname = "Orangemag"
     user_project_lastname  = "Service"
-    user_project_email     = "online@openservice.cloud"
+    user_project_email     = "online@orangemag.cloud"
   }
 }
 
@@ -38,7 +38,7 @@ output "aws_amis" {
     general = "ami-0d53a3ba77632d713"
     web     = "ami-0d53a3ba77632d713"
     #nfs     = "ami-0fec2c2e2017f4e7b"
-    nfs     = "ami-048569764020d86d8"
+    nfs     = "ami-0d53a3ba77632d713" #"ami-048569764020d86d8"
   }
 }
 
@@ -60,7 +60,7 @@ output "aws_instance_type" {
     general  = "m6g.large"
     admin    = "m6g.large"
     master   = "t4g.micro"
-    nfs      = "t3.small"
+    nfs      = "t4g.small"
     varnish  = "t4g.micro"
     cloudlog = "t4g.micro"
   }
