@@ -1,0 +1,14 @@
+---
+- name: main playbook
+  hosts: default
+  become: true
+  gather_facts: true
+  vars:
+    drupal_home: "/var/www/drupal"
+  roles:
+    - role: os
+      tags: os
+    # - role: common
+    #   tags: common
+    # - role: php
+    #   tags: php
