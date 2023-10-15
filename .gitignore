@@ -5,6 +5,7 @@
 *.tfstate
 *.tfstate.*
 private.tf
+terraform/tf-env-config/secrets/aws_private_info.enc.yml
 
 # Crash log files
 crash.log
