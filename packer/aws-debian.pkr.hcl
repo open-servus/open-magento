@@ -45,6 +45,7 @@ build {
 
   ## start actual instance configuration via ansible
   provisioner "ansible" {
+    ansible_env_vars = [ "ANSIBLE_ROLES_PATH=~/ansible-roles" ]
     playbook_file = "${path.root}/ansible/playbook.yml"
     extra_arguments = [
       "--extra-vars", "aqv_environment=test",

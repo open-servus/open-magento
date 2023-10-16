@@ -4,11 +4,24 @@
   become: true
   gather_facts: true
   vars:
-    drupal_home: "/var/www/drupal"
+    project_plan: small
+    admin_private_ip: 127.0.0.1
+    nfs_private_ip: 127.0.0.1
+    project_nfs_name: nfs
+    project_db_endpoint: 127.0.0.1
+    project_cache_endpoint: 127.0.0.1
+    elasticsearch_private_ip: 127.0.0.1
+    project_elasticsearch_name: elasticsearch
+    project_domain_name: openservice.com
+    project_domain_pma: pma.openservice.com
+    project_admin_name: openservice
+    user_project_firstname: Open
+    user_project_lastname: Service
+    user_project_email: openservice@email.com
   roles:
     - role: os
       tags: os
-    # - role: common
-    #   tags: common
-    # - role: php
-    #   tags: php
+    - role: common
+      tags: common
+    - role: php
+      tags: php
