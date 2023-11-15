@@ -1,7 +1,3 @@
-module "data" {
-  source = "../tf-env-config"
-}
-
 terraform {
   required_providers {
     aws = {

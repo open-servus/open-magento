@@ -39,11 +39,3 @@ provider "registry.terraform.io/hashicorp/random" {
     "h1:xZGZf18JjMS06pFa4NErzANI98qi59SEcBsOcS2P2yQ=",
   ]
 }
-
-provider "registry.terraform.io/meilleursagents/ansiblevault" {
-  version     = "2.2.0"
-  constraints = ">= 2.2.0"
-  hashes = [
-    "h1:BdAWPYZ+cwkGuc9Hy0zZfyvbRL9f3naXpcUaOnoZee8=",
-  ]
-}

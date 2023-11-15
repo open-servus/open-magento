@@ -1,5 +1,6 @@
 # Local .terraform directories
 **/.terraform/*
+.envrc
 
 # .tfstate files
 *.tfstate
@@ -29,4 +30,4 @@ override.tf.json
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
 terraform/ansible/group_vars/all/tf_ansible_vars_file.yml
-terraform/tf-env-config/backend.tf
+#terraform/tf-env-config/backend.tf

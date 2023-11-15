@@ -1,8 +1,5 @@
 output "defaults" {
   value = {
-    namespace              = local.environment
-    environment            = local.environment
-    region                 = local.region
     project_name           = "openservice"
     project_domain         = "openservice.cloud"
     project_domain_pma     = "pma.openservice.cloud"
@@ -12,47 +9,18 @@ output "defaults" {
   }
 }
 
-output "aws_access_key" {
-  value     = data.ansiblevault_path.aws_access_key.value
-  sensitive = true
-}
-
-output "aws_secret_key" {
-  value     = data.ansiblevault_path.aws_secret_key.value
-  sensitive = true
-}
-
-output "aws_rds_master_pass" {
-  value     = data.ansiblevault_path.ansible_vault_infra_master_pass.value
-  sensitive = true
-}
-
-output "ssh_public_key" {
-  value     = data.ansiblevault_path.ansible_vault_ssh_public_key.value
-  sensitive = true
-}
-
 #Latest Debian ARM64 AMI from here: https://wiki.debian.org/Cloud/AmazonEC2Image/Bullseye
 output "aws_amis" {
   value = {
-    general = "ami-0d53a3ba77632d713"
-    web     = "ami-0d53a3ba77632d713"
-    #nfs     = "ami-0fec2c2e2017f4e7b"
-    nfs     = "ami-048569764020d86d8"
+    general = data.aws_ami.debian_base_image.id
+    web     = data.aws_ami.debian_base_image.id
+    nfs     = data.aws_ami.debian_base_image.id
   }
 }
 
-output "central_aws_region" {
-  value = "us-east-1" ##Default AMI openservice
-}
 
 output "aws_availability_zone" {
   value = data.aws_availability_zones.available.names[random_integer.priority.result]
-}
-
-output "install_plan" {
-  value = "large"
-  #Can be small, medium or large
 }
 
 output "aws_instance_type" {
@@ -60,7 +28,7 @@ output "aws_instance_type" {
     general  = "m6g.large"
     admin    = "m6g.large"
     master   = "t4g.micro"
-    nfs      = "t3.small"
+    nfs      = "t4g.micro" #"t3.small"
     varnish  = "t4g.micro"
     cloudlog = "t4g.micro"
   }

@@ -1,5 +1,4 @@
 #TODO: Delete if we start to use "direnv"
-export ANSIBLE_VAULT_PASSWORD_FILE = $(HOME)/.config/ansible/vault_pass_data
 export TF_VAR_environment = prod
 #export TF_LOG=DEBUG
 
@@ -23,11 +22,9 @@ setup:
 	mkdir -p ~/.terraform.d/plugin-cache/
 	[ ! -f ~/.terraformrc ] && echo "plugin_cache_dir   = \"$(HOME)/.terraform.d/plugin-cache\"" > ~/.terraformrc || true
 	$(info ---)
-	$(info  Please provide the ansible-vault password if needed by running:)
-	$(info  ANSIBLE_VAULT_PASSWORD= ANSIBLE_VAULT_PASSWORD_FILE= ansible-vault view --ask-vault-pass tf-env-config/secrets/ansible.enc.yml | grep "^ansible_vault_password:" | cut -d ':' -f 2 | xargs > ~/.config/ansible/vault_pass_data)
+	$(info  Please make sure you have exported ENV Vars)
 	$(info ---)
-	ansible-vault view tf-env-config/secrets/ansible.enc.yml >> /dev/null 2>&1
-	./backend.sh >> /dev/null 2>&1
+#	 ./backend.sh >> /dev/null 2>&1
 
 # -----------------------------------------------------------------
 # terraform  init
