@@ -3,8 +3,8 @@
 timezone: Europe/Berlin
 
 # Package version
-php_version: 7.4
-mariadb_version: 10.1
+php_version: 8.2 #7.4
+mariadb_version: 10.2
 
 # Nginx configuration
 magento_dir: /home/mon/htdocs/prod

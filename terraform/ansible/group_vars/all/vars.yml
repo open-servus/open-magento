@@ -9,5 +9,7 @@ magento_public_key: "{{ lookup('ansible.builtin.env', 'magento_public_key') }}"
 magento_private_key: "{{ lookup('ansible.builtin.env', 'magento_private_key') }}"
 aws_rds_master_pass: "{{ lookup('ansible.builtin.env', 'aws_rds_master_pass') }}"
 
+project_db_username: "{{ 'root' if project_plan == 'small' else 'master' }}"
+
 #Some extra var
 #mag_admin_password: "{{ lookup('password', '/dev/null length=22 chars=ascii_letters,digits') }}"
