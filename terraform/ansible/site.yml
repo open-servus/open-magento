@@ -18,8 +18,10 @@
   roles:
     - role: os
       tags: os
+      when: project_plan != "small"
     - role: nfs
       tags: nfs
+      when: project_plan != "small"
 
 - hosts: admin
   roles:
