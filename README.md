@@ -17,46 +17,29 @@ After you clone the current repo:<br />
 
 ### cd terraform/
 
-you need to add your private credentials:
-1. Ansible Vault credentials that you have on your local machine, usually on below path:<br />
-``~/.config/ansible/vault_pass_data``<br />
-ansible-vault edit tf-env-config/secrets/ansible.enc.yml <br />
-``###The file will contain as below###``<br />
-ansible_vault_password: xxx <br />
-``######``<br />
+you need to export your private ENV credentials:
 
 
-2. AWS Account Credentials: Access key ID & Secret access key
-on the file:<br />
-terraform/tf-env-config/secrets
-run ansible-vault:
-ansible-vault edit tf-env-config/secrets/aws_private_info.enc.yml<br />
-``###The file will contain as below###``<br />
-access_key: XXXX<br />
-secret_key: XXXX<br />
-``######``<br />
+1. AWS Account Credentials: Access key ID & Secret access key
+2. Your SSH Public key to access the servers
+3. Your RDS master passwrod
+4. Your Magento crendentials and some secured cred like db user pass
+```
+export AWS_ACCESS_KEY_ID="xxxx"
+export AWS_SECRET_ACCESS_KEY="xxxx"
+export ssh_public_key="ssh-xxx xxxxxx"
+export aws_rds_master_pass="testtest"
+export magento_public_key="xxx"
+export magento_private_key="xxx"
+export pma_project_pass="testtest"
+export db_user_pass="testtest"
 
-3. Your SSH Public key to access the servers
-ansible-vault edit tf-env-config/secrets/ssh_public_key.enc.yml<br />
-``###The file will contain as below###``<br />
-ansible_vault_public_key: "ssh-xxx xxxx"<br />
-``######``<br />
 
-4. Your RDS master passwrod
-ansible-vault edit tf-env-config/secrets/infra.enc.yml<br />
-``###The file will contain as below###``<br />
-aws_rds_master_pass: xxxx<br />
-``######``<br />
-
-5. Your Magento crendentials and some secured cred like db user pass
-ansible-vault edit ansible/group_vars/all/magento.enc.yml<br />
-``###The file will contain as below###``<br />
-magento_public_key: xxx<br />
-magento_private_key: xxx<br />
-pma_project_pass: xxx<br />
-db_user_pass: xxx<br />
-``######``<br />
-
+##
+export TF_VAR_ssh_public_key=$ssh_public_key
+export TF_VAR_aws_rds_master_pass=$aws_rds_master_pass
+export TF_VAR_environment="prod"
+```
 
 Now you are good to go.
 
