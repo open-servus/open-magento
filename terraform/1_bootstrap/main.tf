@@ -6,8 +6,11 @@ data "aws_vpc" "default" {
   default = true
 }
 
-data "aws_subnet_ids" "subnets_ids" {
-  vpc_id = data.aws_vpc.default.id
+data "aws_subnets" "default" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.default.id]
+  }
 }
 
 module "data" {
@@ -107,7 +110,7 @@ module "alb" {
   alb_sg       = [module.sg.sg_alb]
 
   vpc_id          = data.aws_vpc.default.id
-  subnets         = toset(data.aws_subnet_ids.subnets_ids.ids)
+  subnets         = toset(data.aws_subnets.default.ids)
   web_instance_id = module.admin.instance_id
   acm_arn         = module.acm[0].acm_arn
 
