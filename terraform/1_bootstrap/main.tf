@@ -14,15 +14,15 @@ data "aws_subnets" "default" {
 }
 
 module "data" {
-  source   = "../../terraform-modules/data"
+  source = "../../terraform-modules/data"
 }
 
 module "bootstrap" {
-  source             = "../../terraform-modules/terraform-infra-bootstrap"
-  ssh_public_key     = sensitive(var.ssh_public_key)
-  aws_amis           = module.data.aws_amis
-  project_name       = module.data.defaults.project_name
-  region             = var.region
+  source         = "../../terraform-modules/terraform-infra-bootstrap"
+  ssh_public_key = sensitive(var.ssh_public_key)
+  aws_amis       = module.data.aws_amis
+  project_name   = module.data.defaults.project_name
+  region         = var.region
 }
 
 module "sg" {
@@ -39,7 +39,7 @@ module "admin" {
   sg_instance_group_ids = [module.sg.sg_admin, module.sg.sg_whitelist]
   aws_ami               = module.data.aws_amis.general
   availability_zone     = module.data.aws_availability_zone
-  aws_instance_type     = module.data.aws_instance_type.admin
+  aws_instance_type     = local.aws_instance_type.admin
   eip_enabled           = true
 
 }
@@ -65,7 +65,7 @@ module "elasticsearch" {
   sg_instance_group_ids = [module.sg.sg_admin, module.sg.sg_whitelist]
   aws_ami               = module.data.aws_amis.general
   availability_zone     = module.data.aws_availability_zone
-  aws_instance_type     = module.data.aws_instance_type.general
+  aws_instance_type     = local.aws_instance_type.general
 
   count = local.install_plan == "small" ? 0 : 1
 }
@@ -78,7 +78,7 @@ module "nfs" {
   sg_instance_group_ids = [module.sg.sg_admin]
   aws_ami               = module.data.aws_amis.nfs
   availability_zone     = module.data.aws_availability_zone
-  aws_instance_type     = module.data.aws_instance_type.nfs
+  aws_instance_type     = local.aws_instance_type.nfs
 
   count = local.install_plan == "small" ? 0 : 1
 }
@@ -137,7 +137,7 @@ module "asg" {
   project_name             = module.data.defaults.project_name
   availability_zones       = [module.data.aws_availability_zone]
   web_instance_id          = module.admin.instance_id
-  aws_instance_type        = module.data.aws_instance_type.general
+  aws_instance_type        = local.aws_instance_type.general
   aws_security_group       = module.sg.sg_admin
   aws_alb_target_group     = tolist(toset(module.alb[*].web_tg_arn))[0]
   launch_configuration_pfx = "was-0.0.3"

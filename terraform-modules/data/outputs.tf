@@ -23,17 +23,6 @@ output "aws_availability_zone" {
   value = data.aws_availability_zones.available.names[random_integer.priority.result]
 }
 
-output "aws_instance_type" {
-  value = {
-    general  = "m6g.large"
-    admin    = "m6g.large"
-    master   = "t4g.micro"
-    nfs      = "t4g.micro" #"t3.small"
-    varnish  = "t4g.micro"
-    cloudlog = "t4g.micro"
-  }
-}
-
 output "project_db_specs" {
   value = {
     engine                = "aurora-mysql"
