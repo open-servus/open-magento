@@ -8,8 +8,8 @@ variable "ssh_public_key" {
 
 variable "aws_amis" {
   default = {
-    general = "ami-0d53a3ba77632d713"
-    web     = "ami-0d53a3ba77632d713"
+    general = ""
+    web     = ""
   }
 }
 
