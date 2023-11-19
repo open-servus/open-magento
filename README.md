@@ -3,7 +3,7 @@
 Terraform configuration files to provision a Magento application on AWS.
 
 Select Latest Debian AMI from here:
-https://wiki.debian.org/Cloud/AmazonEC2Image/Bullseye
+https://wiki.debian.org/Cloud/AmazonEC2Image/Bookworm
 
 To run the code you need to clone the repository on your local development environment:
 * Needed software:
