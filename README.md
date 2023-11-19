@@ -1,4 +1,4 @@
-# Learn Terraform - Provision a Magento application on AWS
+# Provision Magento application on AWS via Terraform & Ansible
 
 Terraform configuration files to provision a Magento application on AWS.
 
