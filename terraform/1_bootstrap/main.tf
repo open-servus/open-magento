@@ -15,6 +15,7 @@ data "aws_subnets" "default" {
 
 module "data" {
   source = "../../terraform-modules/data"
+  arch   = "amd64"
 }
 
 module "bootstrap" {

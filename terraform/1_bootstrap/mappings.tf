@@ -10,8 +10,8 @@ locals {
 
   aws_instance_type = tomap({
     "dev" = {
-      general  = "t4g.medium"
-      admin    = "t4g.medium"
+      general  = "t3.medium"
+      admin    = "t3.medium"
       master   = "t4g.micro"
       nfs      = "t4g.micro" #"t3.small"
       varnish  = "t4g.micro"

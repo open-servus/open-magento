@@ -3,7 +3,7 @@
     - role: os
       tags: os
       when: project_plan == "small"
-    - role: dbserver
+    - role: percona
       tags: dbserver
       when: project_plan == "small"
   
