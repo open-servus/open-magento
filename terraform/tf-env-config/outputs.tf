@@ -3,33 +3,13 @@ output "defaults" {
     namespace              = local.environment
     environment            = local.environment
     region                 = local.region
-    project_name           = "streams"
-    project_domain         = "openservice.cloud"
-    project_domain_pma     = "pma.openservice.cloud"
+    project_name           = "openservice"
+    project_domain         = "um.team"
+    project_domain_pma     = "pma-openservice.um.team"
     user_project_firstname = "Open"
     user_project_lastname  = "Service"
-    user_project_email     = "online@openservice.cloud"
+    user_project_email     = "online@um.team"
   }
-}
-
-output "aws_access_key" {
-  value     = data.ansiblevault_path.aws_access_key.value
-  sensitive = true
-}
-
-output "aws_secret_key" {
-  value     = data.ansiblevault_path.aws_secret_key.value
-  sensitive = true
-}
-
-output "aws_rds_master_pass" {
-  value     = data.ansiblevault_path.ansible_vault_infra_master_pass.value
-  sensitive = true
-}
-
-output "ssh_public_key" {
-  value     = data.ansiblevault_path.ansible_vault_ssh_public_key.value
-  sensitive = true
 }
 
 #Latest Debian ARM64 AMI from here: https://wiki.debian.org/Cloud/AmazonEC2Image/Bullseye

@@ -1,14 +1,14 @@
-provider "ansiblevault" {
-  root_folder = path.module
-}
-
 locals {
   environment     = "prod"
-  region          = "me-south-1"
-  tf_state_bucket = "open-services-project-cloud-tf-state"
+  region          = "eu-central-1"
 }
 
 resource "random_integer" "priority" {
   min = 0
   max = 1
+}
+
+# Declare the data source
+data "aws_availability_zones" "available" {
+  state = "available"
 }

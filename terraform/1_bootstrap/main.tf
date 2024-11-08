@@ -1,22 +1,22 @@
 provider "aws" {
   region = module.data.defaults.region
 
-  access_key = module.data.aws_access_key
-  secret_key = module.data.aws_secret_key
-
 }
 
 data "aws_vpc" "default" {
   default = true
 }
 
-data "aws_subnet_ids" "subnets_ids" {
-  vpc_id = data.aws_vpc.default.id
+data "aws_subnets" "subnets" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.default.id]
+  }
 }
 
 module "bootstrap" {
   source             = "../../terraform-modules/terraform-infra-bootstrap"
-  ssh_public_key     = sensitive(module.data.ssh_public_key)
+  ssh_public_key     = sensitive(var.ssh_public_key)
   aws_amis           = module.data.aws_amis
   project_name       = module.data.defaults.project_name
   region             = module.data.defaults.region
@@ -46,7 +46,7 @@ module "rds" {
   source              = "../../terraform-modules/terraform-rds"
   environment         = module.data.defaults.environment
   project_name        = module.data.defaults.project_name
-  aws_rds_master_pass = sensitive(module.data.aws_rds_master_pass)
+  aws_rds_master_pass = sensitive(var.aws_rds_master_pass)
   project_db_specs    = module.data.project_db_specs
   sg_admin            = module.sg.sg_admin
   sg_whitelist        = module.sg.sg_whitelist
@@ -108,7 +108,7 @@ module "alb" {
   alb_sg       = [module.sg.sg_alb]
 
   vpc_id          = data.aws_vpc.default.id
-  subnets         = toset(data.aws_subnet_ids.subnets_ids.ids)
+  subnets         = toset(data.aws_subnets.subnets.ids)
   web_instance_id = module.admin.instance_id
   acm_arn         = module.acm[0].acm_arn
 
